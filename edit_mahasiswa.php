@@ -1,6 +1,13 @@
 <?php
 
     session_start();
+
+    if (!isset($_SESSION['login'])) {
+        if ($_SESSION['login'] != true) {
+            header("Location: login.php");
+            exit;
+        }
+    }
       
     $mysqli = new mysqli('localhost', 'root', '', 'mahasiswa');
 
@@ -38,7 +45,7 @@
 </head>
 <body>
     <div class ="container">
-    <h1 class="text-center">Edit mahasiswa</h1>
+    <h1 class="text-center">Edit Mahasiswa</h1>
     <form method ="POST">
         <div class ="mb-3">
             <label for="nim" class="form-label">NIM</label>
