@@ -36,13 +36,18 @@
             <th class="text-center">Nama</th>
             <th class="text-center">NIM</th>
             <th class="text-center">Program Studi</th>
+            <th class="text-center">Edit</th>
         </tr>
         <?php foreach ($student as $row ) { ?>
             <tr>
                 <td class="text-center"><?=$no++; ?></td>
                 <td><?=$row['nim'];?></td>
                 <td><?=$row['nama'];?></td>
-                <td><?=$row['name'];?></td> 
+                <td><?=$row['name'];?></td>
+                <td>
+                    <a href="edit_mahasiswa.php?nim=<?=$row['nim']?>" class="btn btn-success">Edit</a>
+                    <a href="hapus_mahasiswa.php?nim=<?=$row['nim']?>" class="btn btn-danger" onclick="return confirm('Yakin data ini akan dihapus?')">Delete</a>
+                </td> 
             </tr>
         <?php } ?>
     </table>  
