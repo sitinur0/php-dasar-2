@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     $mysqli = new mysqli('localhost', 'root', '', 'mahasiswa');
 
     $prodi = $mysqli->query("SELECT * FROM program_study");
@@ -10,6 +12,8 @@
 
         $insert = $mysqli->query("INSERT INTO student(nim, nama, id) VALUES ('$nim', '$nama', '$prodi')");
         if ($insert) {
+            $_SESSION['success'] = true;
+            $_SESSION['message'] = 'Data Telah Ditambahkan';
             header("Location: mahasiswa.php");
             exit();
         }

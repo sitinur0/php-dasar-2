@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     $mysqli = new mysqli('localhost', 'root', '', 'mahasiswa');
     $result = $mysqli->query("SELECT student.nim, student.nama, program_study.name
     FROM student INNER JOIN program_study ON student.id = program_study.no");
@@ -28,6 +30,12 @@
     <div class="container"> 
     <h1 class="text-center">Data Mahasiswa KA 2021</h1>
     
+    <?php if (isset($_SESSION['success']) && $_SESSION['success'] == true){ ?>
+    <div class="alert alert-success" role="alert">
+        <?= $_SESSION['message'] ?>
+    </div>
+    <?php } ?>
+
     <a href="tambah_mahasiswa.php" class="btn btn-primary">Add</a><br></br>
 
     <table class="table table-bordered table-hover">
@@ -54,3 +62,8 @@
     </div>  
 </body>
 </html>
+
+<?php
+    unset($_SESSION['success']);
+    unset($_SESSION['message']);
+?>
